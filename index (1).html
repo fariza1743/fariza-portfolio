@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fariza Siddiqua — PhD Researcher, Hardware for AI</title>
+<meta name="description" content="Fariza Siddiqua — PhD researcher in Electrical & Computer Engineering at UT El Paso. AI accelerator design for sequence models, LLMs for chip design, and efficient deep learning." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Fariza Siddiqua — PhD Researcher" />
+<meta property="og:description" content="Hardware for AI, and AI for hardware: accelerators for sequence models, LLMs for chip design, efficient deep learning." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#0B0E14;
+    --ink-2:#1A1F2B;
+    --paper:#F4F5F7;
+    --card:#FFFFFF;
+    --rule:#DBDFE7;
+    --rule-2:#E7EAF0;
+    --muted:#646C7C;
+    --muted-2:#8A92A1;
+    --accent:#0FB9A9;
+    --accent-deep:#0A8F84;
+    --accent-wash:rgba(15,185,169,.10);
+
+    --sans:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --disp:"Bricolage Grotesque", var(--sans);
+
+    --wrap:1120px;
+    --pad:clamp(20px, 5vw, 56px);
+    --radius:6px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#04201d;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:var(--wrap);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+
+  .mono{font-family:var(--mono);font-variant-ligatures:none;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.06em;
+    color:var(--accent-deep);
+    text-transform:lowercase;
+    display:inline-block;
+    margin:0 0 22px;
+  }
+  .eyebrow::before{content:"// ";color:var(--muted-2);}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:40;
+    background:rgba(244,245,247,.82);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:18px;}
+  .brand{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.04em;white-space:nowrap;}
+  .brand .dot{color:var(--accent-deep);}
+  .nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+  .nav-links a{position:relative;padding:4px 0;transition:color .18s ease;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:var(--accent);transition:right .22s ease;
+  }
+  .nav-links a:hover::after{right:0;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;background:var(--ink);color:#EAECF1;overflow:hidden;border-bottom:1px solid #000;}
+  .hero .wrap{position:relative;z-index:2;padding-top:clamp(64px,11vw,118px);padding-bottom:clamp(56px,9vw,100px);}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:48px;align-items:center;}
+
+  .tag{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;color:var(--accent);
+    display:inline-flex;align-items:center;gap:9px;margin-bottom:26px;
+  }
+  .tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2.6s ease-out infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(15,185,169,.5);}70%{box-shadow:0 0 0 7px rgba(15,185,169,0);}100%{box-shadow:0 0 0 0 rgba(15,185,169,0);}}
+
+  h1.name{
+    font-family:var(--disp);font-weight:800;
+    font-size:clamp(40px,8.2vw,82px);
+    line-height:.96;letter-spacing:-.02em;margin:0 0 18px;
+    color:#fff;
+  }
+  .role{font-family:var(--mono);font-size:clamp(13px,1.5vw,15px);color:#AEB6C4;letter-spacing:.02em;margin:0 0 26px;}
+  .role b{color:var(--accent);font-weight:500;}
+  .thesis{font-size:clamp(17px,2.1vw,21px);line-height:1.5;color:#D2D7E1;max-width:34ch;margin:0 0 34px;font-weight:400;}
+  .thesis em{font-style:normal;color:#fff;border-bottom:1.5px solid var(--accent);padding-bottom:1px;}
+
+  .pins{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px;}
+  .pin{
+    font-family:var(--mono);font-size:12.5px;color:#C7CDD9;
+    border:1px solid #2B3242;border-radius:var(--radius);
+    padding:8px 13px;display:inline-flex;align-items:center;gap:8px;
+    transition:border-color .18s ease, color .18s ease, transform .18s ease;background:#11151E;
+  }
+  .pin:hover{border-color:var(--accent);color:#fff;transform:translateY(-1px);}
+  .pin svg{width:14px;height:14px;flex:none;}
+  .pin .k{color:var(--muted-2);}
+
+  .statline{
+    font-family:var(--mono);font-size:12px;color:#7E879A;
+    border-top:1px solid #232938;padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 22px;
+  }
+  .statline b{color:#C7CDD9;font-weight:500;}
+
+  /* schematic signature */
+  .die{position:relative;width:100%;aspect-ratio:6/5;}
+  .die svg{width:100%;height:100%;display:block;}
+  .schematic-bg{position:absolute;inset:0;z-index:1;opacity:.5;pointer-events:none;}
+  .schematic-bg svg{width:100%;height:100%;}
+
+  .trace{fill:none;stroke:var(--accent);stroke-width:1;}
+  .trace--draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.6s ease forwards;}
+  .trace--draw.d2{animation-delay:.25s;}
+  .trace--draw.d3{animation-delay:.5s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .pad{fill:var(--accent);opacity:.85;}
+  .node{fill:none;stroke:var(--accent);stroke-width:1.2;}
+  .node-fill{fill:var(--accent);}
+  .blink{animation:blink 3s ease-in-out infinite;}
+  .blink.b2{animation-delay:1s;}
+  .blink.b3{animation-delay:2s;}
+  @keyframes blink{0%,100%{opacity:.25;}50%{opacity:1;}}
+  .lbl{font-family:var(--mono);font-size:9px;fill:#6FE0D3;letter-spacing:.04em;}
+  .grid-line{stroke:#1E2433;stroke-width:1;}
+
+  /* ---------- Generic block ---------- */
+  .block{padding-top:clamp(52px,7.5vw,88px);padding-bottom:clamp(28px,4vw,46px);}
+  .block-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:34px;}
+  .block-title{font-family:var(--disp);font-weight:700;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.015em;margin:0;line-height:1.05;}
+  .block-note{font-family:var(--mono);font-size:12px;color:var(--muted);max-width:30ch;text-align:right;}
+  .eyebrow-wrap{margin-bottom:6px;}
+
+  hr.div{border:none;border-top:1px solid var(--rule);margin:0;}
+
+  /* ---------- Focus / research ---------- */
+  .focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .focus{
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:22px 20px 24px;position:relative;overflow:hidden;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .focus:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .focus .idx{font-family:var(--mono);font-size:11px;color:var(--accent-deep);}
+  .focus h3{font-family:var(--disp);font-weight:700;font-size:18px;line-height:1.15;margin:14px 0 8px;letter-spacing:-.01em;}
+  .focus p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.5;}
+
+  /* ---------- Publications ---------- */
+  .pub{display:grid;grid-template-columns:120px 1fr;gap:26px;padding:26px 0;border-top:1px solid var(--rule);}
+  .pub:first-child{border-top:none;}
+  .pub .venue{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.6;}
+  .pub .venue .yr{color:var(--ink);font-weight:600;display:block;font-size:13px;}
+  .pub .badge{display:inline-block;margin-top:8px;font-family:var(--mono);font-size:10.5px;padding:3px 8px;border:1px solid var(--rule);border-radius:4px;color:var(--accent-deep);background:var(--accent-wash);}
+  .pub h3{font-family:var(--disp);font-weight:700;font-size:clamp(18px,2.2vw,22px);line-height:1.25;margin:0 0 8px;letter-spacing:-.012em;}
+  .pub .authors{font-size:14px;color:var(--muted);margin:0 0 12px;}
+  .pub .authors b{color:var(--ink);font-weight:600;}
+  .pub .meta{font-family:var(--mono);font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);}
+  .pub .meta a{color:var(--accent-deep);border-bottom:1px solid transparent;transition:border-color .18s ease;}
+  .pub .meta a:hover{border-color:var(--accent-deep);}
+
+  .wip{margin-top:14px;font-family:var(--mono);font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:10px;}
+  .wip .chip{color:var(--accent-deep);border:1px dashed var(--accent);border-radius:4px;padding:3px 9px;background:var(--accent-wash);}
+
+  /* ---------- Projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .proj{
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);
+    padding:24px 24px 26px;transition:border-color .2s ease, transform .2s ease;
+    display:flex;flex-direction:column;
+  }
+  .proj:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .proj h3{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:0 0 10px;line-height:1.2;}
+  .proj p{font-size:14px;color:var(--muted);margin:0 0 16px;line-height:1.55;flex:1;}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;}
+  .tags span{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--rule-2);border-radius:4px;padding:4px 8px;background:#FAFBFC;}
+
+  /* ---------- Honors log ---------- */
+  .log{display:flex;flex-direction:column;}
+  .log-row{display:grid;grid-template-columns:104px 1fr auto;gap:22px;align-items:baseline;padding:16px 0;border-top:1px solid var(--rule);}
+  .log-row:first-child{border-top:none;}
+  .log-row .date{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);white-space:nowrap;}
+  .log-row .what{font-size:15px;}
+  .log-row .what b{font-weight:600;}
+  .log-row .what .sub{display:block;font-size:13px;color:var(--muted);margin-top:2px;}
+  .log-row .rank{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--rule);border-radius:4px;padding:3px 9px;white-space:nowrap;align-self:center;}
+  .log-row .rank.gold{color:var(--accent-deep);border-color:var(--accent);background:var(--accent-wash);}
+
+  /* ---------- Stack / skills ---------- */
+  .stack{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .stack .col h4{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin:0 0 14px;font-weight:500;}
+  .stack .col ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px;}
+  .stack .col li{font-family:var(--mono);font-size:13px;border:1px solid var(--rule);border-radius:4px;padding:6px 11px;background:var(--card);transition:border-color .18s ease;}
+  .stack .col li:hover{border-color:var(--accent);}
+
+  /* ---------- Trajectory ---------- */
+  .tl{display:flex;flex-direction:column;}
+  .tl-row{display:grid;grid-template-columns:170px 1fr;gap:30px;padding:24px 0;border-top:1px solid var(--rule);}
+  .tl-row:first-child{border-top:none;}
+  .tl-row .when{font-family:var(--mono);font-size:12.5px;color:var(--muted);}
+  .tl-row .when b{display:block;color:var(--accent-deep);font-weight:500;margin-bottom:3px;}
+  .tl-row h3{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:0 0 4px;line-height:1.2;}
+  .tl-row .org{font-size:14.5px;color:var(--ink);margin:0 0 8px;}
+  .tl-row .org .loc{color:var(--muted);}
+  .tl-row p{font-size:14px;color:var(--muted);margin:0;line-height:1.55;}
+  .tl-row .gpa{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:6px;}
+
+  /* ---------- Footer / contact ---------- */
+  .foot{background:var(--ink);color:#C7CDD9;}
+  .foot .wrap{padding-top:clamp(56px,8vw,88px);padding-bottom:48px;}
+  .foot .big{font-family:var(--disp);font-weight:700;font-size:clamp(26px,4.6vw,46px);color:#fff;letter-spacing:-.018em;line-height:1.05;margin:0 0 14px;}
+  .foot .lede{font-size:16px;color:#AEB6C4;max-width:46ch;margin:0 0 30px;}
+  .foot-pins{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:46px;}
+  .foot-pins a{
+    font-family:var(--mono);font-size:13px;color:#D2D7E1;border:1px solid #2B3242;border-radius:var(--radius);
+    padding:11px 16px;display:inline-flex;align-items:center;gap:9px;background:#11151E;
+    transition:border-color .18s ease, color .18s ease, transform .18s ease;
+  }
+  .foot-pins a:hover{border-color:var(--accent);color:#fff;transform:translateY(-1px);}
+  .foot-pins svg{width:15px;height:15px;}
+  .foot-bottom{border-top:1px solid #232938;padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:11.5px;color:#6B7385;}
+  .foot-bottom .accent{color:var(--accent);}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:880px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;gap:36px;}
+    .die{max-width:420px;}
+    .focus-grid{grid-template-columns:repeat(2,1fr);}
+    .stack{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:620px){
+    .proj-grid{grid-template-columns:1fr;}
+    .focus-grid{grid-template-columns:1fr;}
+    .stack{grid-template-columns:1fr 1fr;}
+    .pub{grid-template-columns:1fr;gap:10px;}
+    .pub .venue{display:flex;align-items:center;gap:12px;}
+    .pub .venue .yr{display:inline;font-size:12px;}
+    .log-row{grid-template-columns:84px 1fr;}
+    .log-row .rank{grid-column:2;justify-self:start;margin-top:6px;}
+    .tl-row{grid-template-columns:1fr;gap:8px;}
+    .block-note{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important;transition:none !important;}
+    .trace--draw{stroke-dashoffset:0 !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="brand" href="#top">FARIZA&nbsp;SIDDIQUA<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#research">research</a>
+      <a href="#work">work</a>
+      <a href="#projects">projects</a>
+      <a href="#honors">honors</a>
+      <a href="#path">path</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <!-- ambient schematic backdrop -->
+  <div class="schematic-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+      <g class="grid-line" stroke-opacity=".6">
+        <line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="300" x2="1200" y2="300"/>
+        <line x1="0" y1="480" x2="1200" y2="480"/>
+        <line x1="300" y1="0" x2="300" y2="600"/><line x1="600" y1="0" x2="600" y2="600"/>
+        <line x1="900" y1="0" x2="900" y2="600"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="tag"><span class="pulse"></span>PhD Researcher · Hardware ⇄ AI</span>
+        <h1 class="name">Fariza<br>Siddiqua</h1>
+        <p class="role">Electrical &amp; Computer Engineering &nbsp;·&nbsp; <b>The University of Texas at El Paso</b></p>
+        <p class="thesis">I design <em>AI accelerators for sequence models</em> — and teach <em>large language models</em> to help design the chips themselves.</p>
+
+        <div class="pins">
+          <a class="pin" href="mailto:fariza.eee17.buet@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span class="k">email</span> fariza.eee17.buet@gmail.com
+          </a>
+          <a class="pin" href="https://github.com/fariza1743" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.4 6.84 9.76.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.34 9.34 0 0 1 12 6.85c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.79-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+            <span class="k">github</span> fariza1743
+          </a>
+          <a class="pin" href="https://farizasiddiqua.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            <span class="k">web</span> farizasiddiqua.com
+          </a>
+          <a class="pin" href="https://www.linkedin.com/in/fariza-siddiqua" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.82-2.05 3.75-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2.02-3.3-2.02 0-2.33 1.57-2.33 3.2V21H9V9Z"/></svg>
+            <span class="k">in</span> Fariza Siddiqua
+          </a>
+        </div>
+
+        <div class="statline">
+          <span><b>Location</b> El Paso, TX (US)</span>
+          <span><b>Status</b> 2 first-author papers in submission · Jan 2026</span>
+          <span><b>Open to</b> research collaborations</span>
+        </div>
+      </div>
+
+      <!-- SIGNATURE: chip floorplan / datapath -->
+      <div class="die" aria-hidden="true">
+        <svg viewBox="0 0 460 384" xmlns="http://www.w3.org/2000/svg">
+          <!-- die outline -->
+          <rect x="34" y="34" width="392" height="316" rx="8" fill="none" stroke="#2B3242" stroke-width="1.5"/>
+          <rect x="50" y="50" width="360" height="284" rx="5" fill="none" stroke="#222838" stroke-width="1"/>
+
+          <!-- bond pads, top + bottom -->
+          <g class="pad">
+            <rect x="80"  y="40" width="9" height="9" rx="1.5"/><rect x="130" y="40" width="9" height="9" rx="1.5"/>
+            <rect x="180" y="40" width="9" height="9" rx="1.5"/><rect x="230" y="40" width="9" height="9" rx="1.5"/>
+            <rect x="280" y="40" width="9" height="9" rx="1.5"/><rect x="330" y="40" width="9" height="9" rx="1.5"/>
+            <rect x="80"  y="335" width="9" height="9" rx="1.5"/><rect x="130" y="335" width="9" height="9" rx="1.5"/>
+            <rect x="180" y="335" width="9" height="9" rx="1.5"/><rect x="230" y="335" width="9" height="9" rx="1.5"/>
+            <rect x="280" y="335" width="9" height="9" rx="1.5"/><rect x="330" y="335" width="9" height="9" rx="1.5"/>
+          </g>
+
+          <!-- functional blocks (floorplan) -->
+          <g>
+            <rect x="74"  y="92"  width="120" height="80" rx="4" fill="#11151E" stroke="#2F384A" stroke-width="1"/>
+            <text x="84" y="110" class="lbl">SEQ_CORE</text>
+            <rect x="262" y="92"  width="120" height="52" rx="4" fill="#11151E" stroke="#2F384A" stroke-width="1"/>
+            <text x="272" y="110" class="lbl">PE_ARRAY</text>
+            <rect x="262" y="160" width="120" height="62" rx="4" fill="#11151E" stroke="#2F384A" stroke-width="1"/>
+            <text x="272" y="178" class="lbl">SRAM</text>
+            <rect x="74"  y="190" width="120" height="92" rx="4" fill="#11151E" stroke="#2F384A" stroke-width="1"/>
+            <text x="84" y="208" class="lbl">GRU / CONV</text>
+            <rect x="262" y="238" width="120" height="44" rx="4" fill="#11151E" stroke="#2F384A" stroke-width="1"/>
+            <text x="272" y="256" class="lbl">CTRL</text>
+          </g>
+
+          <!-- routing traces -->
+          <path class="trace trace--draw"     d="M194 132 H230 V118 H262"/>
+          <path class="trace trace--draw d2"  d="M194 236 H226 V191 H262"/>
+          <path class="trace trace--draw d3"  d="M322 144 V160"/>
+          <path class="trace trace--draw d2"  d="M322 222 V238"/>
+          <path class="trace trace--draw d3"  d="M134 172 V190"/>
+          <path class="trace trace--draw"     d="M84 49 V92"/>
+          <path class="trace trace--draw d2"  d="M334 49 V92"/>
+          <path class="trace trace--draw d3"  d="M184 335 V282"/>
+
+          <!-- live nodes -->
+          <circle class="node-fill blink"    cx="230" cy="118" r="3"/>
+          <circle class="node-fill blink b2" cx="322" cy="160" r="3"/>
+          <circle class="node-fill blink b3" cx="134" cy="190" r="3"/>
+          <circle class="node-fill blink b2" cx="226" cy="191" r="3"/>
+
+          <text x="50" y="372" class="lbl" fill="#4A5468">accelerator floorplan · seq-model datapath</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ RESEARCH ============ -->
+<section class="block reveal" id="research">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow">research</span>
+        <h2 class="block-title">What I work on</h2>
+      </div>
+      <p class="block-note">Circuits &amp; systems at the intersection of silicon and sequence learning.</p>
+    </div>
+    <div class="focus-grid">
+      <article class="focus">
+        <span class="idx">01</span>
+        <h3>AI accelerators for sequence models</h3>
+        <p>Datapaths and architectures tuned for recurrent and convolutional sequence workloads.</p>
+      </article>
+      <article class="focus">
+        <span class="idx">02</span>
+        <h3>LLMs for chip design</h3>
+        <p>Using large language models to assist and automate hardware design tasks.</p>
+      </article>
+      <article class="focus">
+        <span class="idx">03</span>
+        <h3>Efficient deep learning</h3>
+        <p>Acceleration and compression that make models cheaper to run on real hardware.</p>
+      </article>
+      <article class="focus">
+        <span class="idx">04</span>
+        <h3>Circuits &amp; systems for AI</h3>
+        <p>Bridging device-level design with the demands of modern AI compute.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="div"></div>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section class="block reveal" id="work">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow">selected work</span>
+        <h2 class="block-title">Publications</h2>
+      </div>
+      <p class="block-note">Peer-reviewed &amp; in submission.</p>
+    </div>
+
+    <article class="pub">
+      <div class="venue">
+        <span class="yr">2025</span>
+        WiML @ NeurIPS
+        <span class="badge">abstract · poster</span>
+      </div>
+      <div>
+        <h3>Conv-GRU Temporal Refiner for Prandial Recommendations in Type&nbsp;1 Diabetes</h3>
+        <p class="authors"><b>Fariza Siddiqua</b></p>
+        <div class="meta">
+          <span>Women in Machine Learning Symposium</span>
+          <span>NeurIPS 2025 · San Diego, CA</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="pub">
+      <div class="venue">
+        <span class="yr">2023</span>
+        IEEE R10-HTC
+        <span class="badge">conference</span>
+      </div>
+      <div>
+        <h3>Leveraging Gram Matrix Representation in Shallow DNN for GI Tract MRI Scanned Image Segmentation</h3>
+        <p class="authors"><b>Fariza Siddiqua</b> (1st author)</p>
+        <div class="meta">
+          <span>IEEE 11th Region 10 Humanitarian Technology Conference</span>
+          <span>Published 19 Mar 2024</span>
+          <a href="https://doi.org/10.1109/R10-HTC57504.2023.10461782" target="_blank" rel="noopener">DOI: 10.1109/R10-HTC57504.2023.10461782 ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <div class="wip">
+      <span class="chip">in progress</span>
+      Two first-author conference papers scheduled for submission in January 2026.
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="div"></div>
+
+<!-- ============ PROJECTS ============ -->
+<section class="block reveal" id="projects">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow">build log</span>
+        <h2 class="block-title">Projects</h2>
+      </div>
+      <p class="block-note">Hardware prototypes, datasets, and embedded systems.</p>
+    </div>
+
+    <div class="proj-grid">
+      <article class="proj">
+        <h3>PhonoTrack</h3>
+        <p>Continuous heart-rate &amp; blood-pressure monitoring from phonocardiogram (PCG) signals. Built a novel hardware prototype and collected a heart-sound dataset of 20 individuals.</p>
+        <div class="tags"><span>MATLAB</span><span>PCG / DSP</span><span>hardware prototype</span><span>dataset</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>Vehicle Speed Detection</h3>
+        <p>Estimating vehicle speed from video using a CNN pipeline. Curated a custom dataset and implemented YOLO&nbsp;v2 for object detection.</p>
+        <div class="tags"><span>MATLAB</span><span>CNN</span><span>YOLO v2</span><span>computer vision</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>Solar Environment Monitor</h3>
+        <p>A partially solar-powered environmental monitoring device integrating sensors with an Arduino UNO and reporting over a GSM module to ThingSpeak.</p>
+        <div class="tags"><span>Arduino IDE</span><span>GSM</span><span>ThingSpeak</span><span>IoT</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>Home Automation</h3>
+        <p>WiFi-controlled home automation using a NodeMCU and 4-channel relays to switch AC appliances from a phone via the Blynk API.</p>
+        <div class="tags"><span>NodeMCU</span><span>Blynk API</span><span>relays</span><span>IoT</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="div"></div>
+
+<!-- ============ HONORS ============ -->
+<section class="block reveal" id="honors">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow">honors</span>
+        <h2 class="block-title">Awards &amp; recognition</h2>
+      </div>
+      <p class="block-note">Competitions, scholarships &amp; venues.</p>
+    </div>
+
+    <div class="log">
+      <div class="log-row">
+        <span class="date">2025.11</span>
+        <span class="what"><b>ICCD 2025 — LLMs for Hardware Design Challenge</b><span class="sub">International Conference on Computer Design</span></span>
+        <span class="rank gold">2nd place</span>
+      </div>
+      <div class="log-row">
+        <span class="date">2025.10</span>
+        <span class="what"><b>CAHSI Travel Scholarship</b><span class="sub">GMiS Conference 2025 · San Diego, CA</span></span>
+        <span class="rank">scholarship</span>
+      </div>
+      <div class="log-row">
+        <span class="date">2025.09</span>
+        <span class="what"><b>Texas Instruments Foundation Endowed Scholarship</b></span>
+        <span class="rank">scholarship</span>
+      </div>
+      <div class="log-row">
+        <span class="date">2025</span>
+        <span class="what"><b>WiML @ NeurIPS 2025 — Poster</b><span class="sub">San Diego, California</span></span>
+        <span class="rank">selected</span>
+      </div>
+      <div class="log-row">
+        <span class="date">2021.11</span>
+        <span class="what"><b>BIKIRON — Finalist</b><span class="sub">Sustainable &amp; Renewable Energy Development Authority · sensor-based agriculture (Arduino + GSM)</span></span>
+        <span class="rank">finalist</span>
+      </div>
+      <div class="log-row">
+        <span class="date">2021.03</span>
+        <span class="what"><b>Project Tech Tussle — Champion</b><span class="sub">IEEE Computer Society, BRACU · MEENA pregnancy-tracking app</span></span>
+        <span class="rank gold">champion</span>
+      </div>
+      <div class="log-row">
+        <span class="date">2021.03</span>
+        <span class="what"><b>BdOSN DevMania — 1st Runner-Up</b><span class="sub">Bangladesh Open Source Network · MEENA</span></span>
+        <span class="rank">runner-up</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="div"></div>
+
+<!-- ============ STACK ============ -->
+<section class="block reveal" id="stack">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow">stack</span>
+        <h2 class="block-title">Tools &amp; technologies</h2>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="col">
+        <h4>Languages</h4>
+        <ul><li>C++</li><li>Python</li><li>SQL</li><li>MATLAB</li></ul>
+      </div>
+      <div class="col">
+        <h4>EDA / Simulation</h4>
+        <ul><li>PSpice</li><li>Proteus</li><li>Icarus Verilog</li></ul>
+      </div>
+      <div class="col">
+        <h4>Deep Learning</h4>
+        <ul><li>PyTorch</li><li>TensorFlow</li></ul>
+      </div>
+      <div class="col">
+        <h4>Also</h4>
+        <ul><li>LaTeX</li><li>Arduino</li><li>AutoCAD</li><li>MS Excel</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><hr class="div"></div>
+
+<!-- ============ PATH ============ -->
+<section class="block reveal" id="path">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow">path</span>
+        <h2 class="block-title">Experience &amp; education</h2>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="when"><b>Sep 2025 — present</b>El Paso, TX</div>
+        <div>
+          <h3>PhD Research Associate</h3>
+          <p class="org">The University of Texas at El Paso <span class="loc">· Electrical &amp; Computer Engineering</span></p>
+          <p>Research on AI accelerator design for sequence models and LLMs for hardware design. Presented at WiML @ NeurIPS 2025 and attended GMiS 2025 on a CAHSI travel scholarship.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when"><b>Aug 2023 — Jun 2024</b>Dhaka, BD</div>
+        <div>
+          <h3>Radio Service Specialist Engineer</h3>
+          <p class="org">Banglalink Digital Communications Ltd.</p>
+          <p>Optimized 2G/3G/4G network resources based on traffic and market demand, collaborating across the technology division.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when"><b>2025 — present</b>Doctorate</div>
+        <div>
+          <h3>Ph.D., Electrical &amp; Computer Engineering</h3>
+          <p class="org">The University of Texas at El Paso</p>
+          <p class="gpa">Coursework: Efficient Deep Learning Acceleration · Foundations of Deep Learning</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="when"><b>2018 — 2023</b>Bachelor's</div>
+        <div>
+          <h3>B.Sc., Electrical &amp; Electronic Engineering</h3>
+          <p class="org">Bangladesh University of Engineering and Technology (BUET) <span class="loc">· Major: Communication &amp; Signal Processing</span></p>
+          <p class="gpa">CGPA 3.60 / 4.00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ CONTACT / FOOTER ============ -->
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--accent)">contact</span>
+    <p class="big">Let's build something at the<br>edge of hardware and AI.</p>
+    <p class="lede">Open to research collaborations, internships, and conversations about accelerators, efficient ML, and LLM-driven chip design.</p>
+
+    <div class="foot-pins">
+      <a href="mailto:fariza.eee17.buet@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        fariza.eee17.buet@gmail.com
+      </a>
+      <a href="https://github.com/fariza1743" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.4 6.84 9.76.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.34 9.34 0 0 1 12 6.85c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.79-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+        github.com/fariza1743
+      </a>
+      <a href="https://farizasiddiqua.com" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        farizasiddiqua.com
+      </a>
+      <a href="https://www.linkedin.com/in/fariza-siddiqua" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.82-2.05 3.75-2.05C20.4 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.3-2.02-3.3-2.02 0-2.33 1.57-2.33 3.2V21H9V9Z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Fariza Siddiqua · El Paso, TX</span>
+      <span><span class="accent">design:</span> datasheet / floorplan · built for GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // current year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // scroll-reveal (respects reduced motion via CSS)
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
